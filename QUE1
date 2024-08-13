@@ -1,0 +1,40 @@
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class DifferenceBetweenDuplicates {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int N = sc.nextInt();
+        int[] A = new int[N];
+        for (int i = 0; i < N; i++) {
+            A[i] = sc.nextInt();
+        }
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        Integer firstDuplicate = null;
+        Integer lastDuplicate = null;
+
+        for (int i = 0; i < N; i++) {
+            int currentElement = A[i];
+            if (map.containsKey(currentElement)) {
+                if (firstDuplicate == null) {
+                    firstDuplicate = currentElement;
+                }
+                lastDuplicate = currentElement;
+            } else {
+                map.put(currentElement, i);
+            }
+        }
+
+        if (firstDuplicate != null && lastDuplicate != null) {
+            int difference = firstDuplicate - lastDuplicate;
+            System.out.println("Difference between first and last duplicate element: " + difference);
+        } else {
+            System.out.println("No duplicates found in the array.");
+        }
+
+        sc.close();
+    }
+}
