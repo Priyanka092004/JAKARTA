@@ -1,0 +1,88 @@
+public class Student {
+    private String name;
+    private String regNo;
+    private String dept;
+    private int year;
+    private int semester;
+    private int mark1, mark2, mark3, mark4, mark5, mark6;
+    private int total;
+    private double average;
+    public void getDetails(String name, String regNo, String dept, int year, int semester,int mark1, int mark2, int mark3, int mark4, int mark5, int mark6) {
+        this.name = name;
+        this.regNo = regNo;
+        this.dept = dept;
+        this.year = year;
+        this.semester = semester;
+        this.mark1 = mark1;
+        this.mark2 = mark2;
+        this.mark3 = mark3;
+        this.mark4 = mark4;
+        this.mark5 = mark5;
+        this.mark6 = mark6;
+        calculateTotalAndAverage();
+    }
+    private void calculateTotalAndAverage() {
+        this.total = mark1 + mark2 + mark3 + mark4 + mark5 + mark6;
+        this.average = total / 6.0;
+    }
+    public void display() {
+        System.out.println("Student Name: " + name);
+        System.out.println("Registration Number: " + regNo);
+        System.out.println("Department: " + dept);
+        System.out.println("Year: " + year);
+        System.out.println("Semester: " + semester);
+        System.out.println("Marks: ");
+        System.out.println("Mark 1: " + mark1);
+        System.out.println("Mark 2: " + mark2);
+        System.out.println("Mark 3: " + mark3);
+        System.out.println("Mark 4: " + mark4);
+        System.out.println("Mark 5: " + mark5);
+        System.out.println("Mark 6: " + mark6);
+        System.out.println("Total Marks: " + total);
+        System.out.printf("Average Marks: %.2f%%\n", average);
+    }
+}
+
+import java.util.Scanner;
+
+public class StudentMarks {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Student student = new Student();
+        System.out.print("Enter student name: ");
+        String name = scanner.nextLine();
+        
+        System.out.print("Enter registration number: ");
+        String regNo = scanner.nextLine();
+        
+        System.out.print("Enter department: ");
+        String dept = scanner.nextLine();
+        
+        System.out.print("Enter year: ");
+        int year = scanner.nextInt();
+        
+        System.out.print("Enter semester: ");
+        int semester = scanner.nextInt();
+        
+        System.out.print("Enter mark 1: ");
+        int mark1 = scanner.nextInt();
+        
+        System.out.print("Enter mark 2: ");
+        int mark2 = scanner.nextInt();
+        
+        System.out.print("Enter mark 3: ");
+        int mark3 = scanner.nextInt();
+        
+        System.out.print("Enter mark 4: ");
+        int mark4 = scanner.nextInt();
+        
+        System.out.print("Enter mark 5: ");
+        int mark5 = scanner.nextInt();
+        
+        System.out.print("Enter mark 6: ");
+        int mark6 = scanner.nextInt();
+        student.getDetails(name, regNo, dept, year, semester, mark1, mark2, mark3, mark4, mark5, mark6);
+        student.display();
+        scanner.close();
+    }
+}
