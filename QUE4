@@ -1,0 +1,54 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+class Employee {
+    int empId;
+    String empName;
+    String empAddress;
+    String empDesignation;
+    String empDepartment;
+    String empPhoneNo;
+    double empBasicPay;
+    double empHRA;
+    double empDA;
+    double empTA;
+    double empSalary;
+
+    Employee(int empId, String empName, String empAddress, String empDesignation, String empDepartment, String empPhoneNo, double empBasicPay) {
+        this.empId = empId;
+        this.empName = empName;
+        this.empAddress = empAddress;
+        this.empDesignation = empDesignation;
+        this.empDepartment = empDepartment;
+        this.empPhoneNo = empPhoneNo;
+        this.empBasicPay = empBasicPay;
+        this.empHRA = 0.1 * empBasicPay;
+        this.empDA = 0.02 * empBasicPay;
+        this.empTA = 0.02 * empBasicPay;
+        this.empSalary = empBasicPay + empHRA + empDA + empTA;
+    }
+}
+
+public class EmployeeManagement {
+    public static void main(String[] args) {
+        List<Employee> employees = new ArrayList<>();
+        employees.add(new Employee(1, "Alice", "123 Main St", "Manager", "HR", "1234567890", 50000));
+        employees.add(new Employee(2, "Bob", "456 Oak St", "Developer", "IT", "0987654321", 45000));
+        employees.add(new Employee(3, "Charlie", "789 Pine St", "Manager", "IT", "1122334455", 55000));
+        employees.add(new Employee(4, "David", "321 Maple St", "Analyst", "Finance", "5566778899", 40000));
+        employees.add(new Employee(5, "Eva", "654 Elm St", "Clerk", "HR", "9988776655", 30000));
+        Map<String, Employee> highestSalaryByDept = new HashMap<>();
+        for (Employee emp : employees) {
+            if (!highestSalaryByDept.containsKey(emp.empDepartment) || emp.empSalary > highestSalaryByDept.get(emp.empDepartment).empSalary) {
+                highestSalaryByDept.put(emp.empDepartment, emp);
+            }
+        }
+        System.out.println("Employee with the highest salary in each department:");
+        for (String dept : highestSalaryByDept.keySet()) {
+            Employee emp = highestSalaryByDept.get(dept);
+            System.out.println("Department: " + dept + ", Employee: " + emp.empName + ", Salary: " + emp.empSalary);
+        }
+    }
+}
